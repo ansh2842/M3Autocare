@@ -1,0 +1,29 @@
+select{
+    width:100%;
+    height: 40px;
+    border: 1px solid rgb(228, 227, 227);
+    color: grey;
+    border-radius: 7px;
+    outline: none;
+}
+
+option{
+    font-size: 13px;
+}
+
+input[type = "number"]::-webkit-inner-spin-button{
+    display: none;
+}
+
+input[type = "file"]{
+    font-size: 15px;
+    border: 1px solid rgb(228, 227, 227);
+    height: 40px;
+    border-radius: 7px;
+    margin: auto;
+    color: grey;
+}
+
+.mrp{
+    text-decoration: line-through;
+}
