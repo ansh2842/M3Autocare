@@ -161,11 +161,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <List>{renderRoutes}</List>
       <SoftBox pt={2} my={2} mx={2} mt="auto">
         <SidenavCard />
-        <SoftBox mt={2}>
-         <p style={{fontSize:'13px'}}>
-         © 2023 Made by Muhammed Anshad 
-         </p>
-        </SoftBox>
+
       </SoftBox>
     </SidenavRoot>
   );

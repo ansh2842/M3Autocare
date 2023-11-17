@@ -82,11 +82,12 @@ import AboutManagement  from './layouts/aboutManagement/aboutmaganement'
 import AboutEdit  from './layouts/aboutManagement/aboutEdit'
 import Product from './userInterface/products'
 import Appointment from "userInterface/appoinment";
-import Title  from './layouts/headingManagement/titleManagement'
-import TitleEdit  from './layouts/headingManagement/titleEdit'
 import CheckApp from './userInterface/checkAppointements'
 import Appoinmentmgt from './layouts/appointmentManagement/appointmentManagement'
-
+import TechniicianTable from "layouts/technicianManagement/techniicianTable";
+import CancelappManagement from "./layouts/appointmentCancelManagement/cancelappManagement";
+import ServiceReport from "layouts/serviceReports/serviceReports";
+import AppReport from './layouts/appointmentCancelReport/appCancelReport'
 //icons
 import Shop from "examples/Icons/Shop";
 import Office from "examples/Icons/Office";
@@ -101,9 +102,14 @@ import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
 import CarRepairIcon from '@mui/icons-material/CarRepair';
 import PostAddIcon from '@mui/icons-material/PostAdd';
-
-
-
+import ClassIcon from '@mui/icons-material/Class';
+import BadgeIcon from '@mui/icons-material/Badge';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import PersonIcon from '@mui/icons-material/Person';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import InfoIcon from '@mui/icons-material/Info';
+import BookOnlineIcon from '@mui/icons-material/BookOnline';
+import EventBusyIcon from '@mui/icons-material/EventBusy';
 
 const routes = [
   {
@@ -116,15 +122,15 @@ const routes = [
     noCollapse: true,
   },
  
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    route: "/tables",
-    icon: <Office size="12px" />,
-    component: <Tables />,
-    noCollapse: true,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Tables",
+  //   key: "tables",
+  //   route: "/tables",
+  //   icon: <Office size="12px" />,
+  //   component: <Tables />,
+  //   noCollapse: true,
+  // },
   {
     type: "collapse",
     name: "Admin",
@@ -166,7 +172,7 @@ const routes = [
     name: "SubCategory",
     key: "Sub category management",
     route: "/SubCategory",
-    icon: <PostAddIcon size="12px" />,
+    icon: <ClassIcon size="12px" />,
     component: <SubCategoryManagement />,
     noCollapse: true,
   },
@@ -175,7 +181,7 @@ const routes = [
     name: "Technician",
     key: "Technician management",
     route: "/Technician",
-    icon: <PostAddIcon size="12px" />,
+    icon: <BadgeIcon size="12px" />,
     component: <TechnicianManagement />,
     noCollapse: true,
   },
@@ -184,7 +190,7 @@ const routes = [
     name: "Brand",
     key: "BrandManagement",
     route: "/Brand",
-    icon: <PostAddIcon size="12px" />,
+    icon: <ApartmentIcon size="12px" />,
     component: <BrandManagement />,
     noCollapse: true,
   },
@@ -193,7 +199,7 @@ const routes = [
     name: "User",
     key: "User Management",
     route: "/User",
-    icon: <PostAddIcon size="12px" />,
+    icon: <PersonIcon size="12px" />,
     component: <UserManagement />,
     noCollapse: true,
   },
@@ -202,7 +208,7 @@ const routes = [
     name: "Banner",
     key: "User Management",
     route: "/banner",
-    icon: <PostAddIcon size="12px" />,
+    icon: <ViewCarouselIcon size="12px" />,
     component: <BannerManagement />,
     noCollapse: true,
   },
@@ -211,7 +217,7 @@ const routes = [
     name: "About",
     key: "About Management",
     route: "/admin-about",
-    icon: <PostAddIcon size="12px" />,
+    icon: <InfoIcon size="12px" />,
     component: <AboutManagement />,
     noCollapse: true,
   },
@@ -220,10 +226,21 @@ const routes = [
     name: "Appoinment",
     key: "dashboard",
     route: "/appoinmentmgt",
-    icon: <Shop size="12px" />,
+    icon: <BookOnlineIcon size="12px" />,
     component: <Appoinmentmgt />,
     noCollapse: true,
   },
+  
+  {
+    type: "collapse",
+    name: "Appoinment-Cancel",
+    key: "dashboard",
+    route: "/cancelappointment",
+    icon: <EventBusyIcon size="12px" />,
+    component: <CancelappManagement />,
+    noCollapse: true,
+  },
+  
   // {
   //   type: "collapse",
   //   name: "Title",
@@ -260,6 +277,27 @@ const routes = [
   //   component: <RTL />,
   //   noCollapse: true,
   // },
+  { type: "title", title: "Service Reports", key: "service-reports" },
+  {
+    type: "collapse",
+    name: "Service Reports",
+    key: "service",
+    route:"/ServiceReport",
+    icon: <CarRepairIcon size="12px" />,
+    component: <ServiceReport />,
+    noCollapse: true,
+  },
+  { type: "title", title: "Appointment Reports", key: "appointment-reports" },
+  {
+    type: "collapse",
+    name: "Appointment Reports",
+    key: "appointment",
+    route:"/Appointment-Report",
+    icon: <CarRepairIcon size="12px" />,
+    component: <AppReport />,
+    noCollapse: true,
+  },
+
   { type: "title", title: "Account Pages", key: "account-pages" },
   {
     type: "collapse",
@@ -270,6 +308,8 @@ const routes = [
     component: <Profile />,
     noCollapse: true,
   },
+
+
    {
     
     name: "Sign In",
@@ -392,7 +432,7 @@ const routes = [
    
     name: "BrandEdit",
     key: "update",
-    route: "/home",
+    route: "/",
     icon: <SpaceShip size="12px" />,
     component: <Home />,
     noCollapse: true,
@@ -540,6 +580,16 @@ const routes = [
     route: "/checkappointment/:id",
     icon: <SpaceShip size="12px" />,
     component: <CheckApp />,
+    noCollapse: true,
+  },
+   
+  {
+   
+    name: "BrandEdit",
+    key: "update",
+    route: "/TechniicianTable/:id",
+    icon: <SpaceShip size="12px" />,
+    component: <TechniicianTable  />,
     noCollapse: true,
   },
    

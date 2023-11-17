@@ -13,6 +13,8 @@ var brandController = require('../controller/brandController')
 var bannerController = require('../controller/bannerController')
 var aboutController = require('../controller/aboutController')
 var AppointmentController = require('../UserContollers/appointmentController')
+var TechandAppController = require('../controller/techAndapointController')
+var CancelAppointmentController = require('../UserContollers/cancelAppointmentController')
 var multer = require('multer')
 
 
@@ -118,6 +120,23 @@ Router.put('/editAboutByid/:id',requireAuth,upload.single('image'),aboutControll
 
 //appointmentRoutes
 
-Router.get('/getappointmentdata',requireAuth,AppointmentController.getappdatas)
+Router.get('/getDataSerivceFilter',requireAuth,AppointmentController.getappdatasByID)
+Router.get('/getFilterReport',requireAuth,AppointmentController.getappReportFilter)
+Router.get('/getdataapp/:id',AppointmentController.getTechandDateByid)
+Router.get('/getdataappData',AppointmentController.getappdatas)
+
+Router.put('/updateData/:id',AppointmentController.updateCancel)
+
+
+//techandappointmentRoutes
+Router.post('/puttechanddate',TechandAppController.updateTechandDate)
+Router.get('/getTechApp',TechandAppController.getTechandDate)
+Router.get('/getTechId/:id',TechandAppController.getTechandDataByid)
+Router.get('/gettechbYids/:id',TechandAppController.getDataByids)
+Router.delete('/deleteTechByid/:id',TechandAppController.TechandDeleteByid)
+
+//cancelappointmentRoutes
+Router.get('/getCancel',requireAuth,CancelAppointmentController.cancelrqst)
+Router.put('/updateDataReject/:id',CancelAppointmentController.cancelreject)
 
 module.exports = Router;

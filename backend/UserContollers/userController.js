@@ -270,6 +270,12 @@ exports.forgotUser = asyncHandler(async (req, res) => {
       subject: 'Message',
       html: `<p>Name: ${name}</p><p>Contact: ${contact}</p><p>From: ${email}</p><p>Message: ${message}</p>`,
     });
+    const infoReply = await transporter.sendMail({
+      from: emailUsername, 
+      to:  email , 
+      subject: 'Reply to Message',
+      html: `We have recieved your message Thank you for being with US :) <br /> <strong>m3 Autocare</strong>`,
+    });
 
     console.log(info);
     res.json(info);

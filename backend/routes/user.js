@@ -10,6 +10,8 @@ var aboutController = require('../controller/aboutController')
 var ProductController = require('../controller/ProductController')
 var categoryController = require('../controller/categoryController')
 var AppointmentController = require('../UserContollers/appointmentController')
+var TechandAppController = require('../controller/techAndapointController')
+var CancelAppointmentController = require('../UserContollers/cancelAppointmentController')
 
 const multer =  require('multer')
 
@@ -72,9 +74,20 @@ Router.post('/appointmentAdd',AppointmentController.appointmentAdd)
 Router.get('/gettappdata/:id',AppointmentController.getAppointmentData)
 Router.put('/updateStatus/:id',AppointmentController.updateStatustData)
 Router.get('/getTrack/:id',AppointmentController.getTrackData)
-Router.get('/getappByid/:id',AppointmentController.getappdatasByID)
+Router.get('/getappByid/:id',AppointmentController.getappdatasByData)
+Router.put('/updateFedback/:id',AppointmentController.feedback)
 
 
 //email
 Router.post('/sendMessage',usersController.sendEmail)
+
+//TechandApp routes
+Router.get('/getTechId/:id',TechandAppController.getTechandDataByid)
+
+//cancelAppointemtRoutes
+
+Router.post('/cancelAppointment',CancelAppointmentController.cancelAppData)
+Router.get('/getCancel',CancelAppointmentController.cancelrqst)
+Router.get('/getappointReport',requireAuth,CancelAppointmentController.getappReport)
+
 module.exports = Router

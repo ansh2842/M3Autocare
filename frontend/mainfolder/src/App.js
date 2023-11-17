@@ -61,7 +61,7 @@ export default function App() {
   if(pathname == '/ForgotPassword'|| 
   (pathname.search( '/ChangePassword')>-1)||
   (pathname.search('/ForgotPasswrodId')>-1) ||
-    pathname ==='/home' || 
+    pathname ==='/' || 
     pathname.search('/user-service')>-1 ||
     pathname === '/user-about'||
     pathname === '/user-contact' ||
@@ -204,7 +204,7 @@ export default function App() {
       {template === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/home?"/>} />
+        <Route path="*" element={<Navigate to="/"/>} />
       </Routes>
     </ThemeProvider>
   );

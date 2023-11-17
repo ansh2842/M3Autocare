@@ -104,7 +104,7 @@ function SignIn() {
               Email
             </SoftTypography>
           </SoftBox>
-          <SoftInput style={{textTransform:'lowercase'}} type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+          <SoftInput  type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
         </SoftBox>
         <p style={{marginTop:'-12px', color:'red', fontSize:'11px'}}  >
               {Nameerror}

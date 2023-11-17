@@ -1137,13 +1137,14 @@ p{
   margin-top: 10px;
   text-transform: uppercase;
   font-family: 'Onest', sans-serif;
+  margin-left: 4px;
 }
 .deatils1{
   color: #04233b;
   font-size: 16px;
   margin-top: 10px;
   font-family: 'Onest', sans-serif;
-  
+  margin-left: 4px;
 }
 .deatils2{
   color: #04233b;
@@ -1151,8 +1152,28 @@ p{
   margin-top: 10px;
   text-decoration: line-through;
   font-family: 'Onest', sans-serif;
+  margin-left: 4px;
+ 
 }
-
+.imgbox1{
+  width:250px;
+  height: 200px;
+ 
+}
+.bntssa{
+  width: 180px;
+  height: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #04233b;
+  color: white;
+  font-size: 13px;
+  font-family: 'Onest', sans-serif;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
 .dialogpop{
   font-size: 15px;
   margin-top: 10px;
@@ -1307,6 +1328,20 @@ input::placeholder{
 .menu_icon{
   background-color: transparent;
 }
+.success{
+  font-family: 'Onest', sans-serif;
+  font-size: 14px;
+  color: green;
+}
+.err{
+  font-family: 'Onest', sans-serif;
+  font-size: 14px;
+  color: red;
+}
+.hinputs{
+  font-family: 'Onest', sans-serif;
+  font-size: 16px;
+}
 .spin{
   flex: 1 1;
     display: flex;
@@ -1349,6 +1384,83 @@ input::placeholder{
   max-height: 150px !important; /* Adjust the height as needed */
   object-fit: contain !important; /* Adjust the object-fit property as needed */
 }
+
+.serchBAr{
+  width: 200px;
+  height: 40px;
+  border: 1px solid grey;
+  background-color: white;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.serchBoxx{
+  padding-left: 10px;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid black;
+  font-size: 15px;
+  width: 240px;
+  height: 40px;
+}
+.serchBoxx::-webkit-input-placeholder{
+  font-size: 13px;
+}
+.searchItems{
+  position: absolute;
+}
+.boxbtn{
+  width: 112%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  right: 10px;
+}
+.tdhead{
+  font-family: 'Onest', sans-serif;
+  font-size: 16px;
+  width: 12%;
+}
+.date{
+  width: 15%;
+}
+.texttareas{
+  width: 100%;
+  border: 1px solid blue;
+  border-radius: 7px;
+  outline: none;
+  padding: 6px;
+  font-size: 15px;
+  font-family: 'Onest', sans-serif;
+  text-transform: capitalize;
+}
+.backtoTop {
+
+  
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 37rem;
+  right: 3rem;
+  align-items: center;
+ 
+
+}
+.backtoTopbtn {
+
+  position: fixed;
+  z-index: 9999;
+  width: 45px;
+  height: 44px;
+  border-radius: 142px;
+  border: none;
+  background-color: #0a97b0;
+  color: white;
+ 
+
+}
+
 
 @media (max-width: 1360px) {
   iframe {

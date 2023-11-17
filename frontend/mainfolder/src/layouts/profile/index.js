@@ -225,7 +225,7 @@ function Overview() {
         </Card>
       </SoftBox> */}
 
-      <Footer />
+      
     </DashboardLayout>
   );
 }

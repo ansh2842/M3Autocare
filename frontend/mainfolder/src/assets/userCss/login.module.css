@@ -157,7 +157,23 @@ border-radius: 50px;
     justify-content: flex-end;
    
 }
-
+.spinX{
+  
+    display: grid;
+    place-items: center;
+    padding: 4px 55px;
+    background-color:#0dcaf0;
+    color: #ffffff;
+    border-radius: 10px;
+    transition: all .3s;
+    border: none;
+    width: fit-content;
+}
+.spinbx{
+    display: grid;
+    place-items: center;
+    width: 70%;
+}
 
 @media (max-width: 960px){
     

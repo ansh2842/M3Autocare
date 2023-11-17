@@ -58,6 +58,13 @@ import {
 // Images
 import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import {Zoom} from '@mui/material';
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
@@ -96,14 +103,23 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  const [opens,setOpens] = useState(false);
 
-  const logout = () => {
+  const logouts = () => {
     localStorage.clear();
   
     window.location.href = '/authentication/sign-in?v=' + Date.now();
     
   };
 
+  const handleClickOpens = () => {
+    setOpens(true);
+    
+  };
+
+  const handleCloses = () => {
+    setOpens(false);
+  };
   
   // Render the notifications menu
   const renderMenu = () => (
@@ -166,7 +182,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
             <SoftBox color={light ? "white" : "inherit"}>
 
                 <IconButton sx={navbarIconButton} size="small">
-                  <SoftTypography onClick={logout}
+                  <SoftTypography onClick={handleClickOpens}
                     variant="button"
                     fontWeight="medium"
                     color={light ? "white" : "dark"}
@@ -209,7 +225,34 @@ function DashboardNavbar({ absolute, light, isMini }) {
           </SoftBox>
         )}
       </Toolbar>
+      <div>
+        <Dialog
+          open={opens}
+          onClose={handleCloses}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          TransitionComponent={Zoom} transitionDuration={400}
+          fullWidth
+          maxWidth={'sm'}
+        >
+          <DialogTitle id="alert-dialog-title">Logout</DialogTitle>
+          <DialogContent>
+            <DialogContentText style={{fontSize:'14px'}} id="alert-dialog-description">
+              Are you sure  want to logout?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloses} color="error">
+              Cancel
+            </Button>
+            <Button onClick={logouts} color="error">
+              Logout
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </AppBar>
+    
   );
 }
 

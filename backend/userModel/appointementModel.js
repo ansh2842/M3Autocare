@@ -51,7 +51,16 @@ const appointmentSchema = new mongoose.Schema({
     remarks:{
         type:String,
         
+    },
+    rating:{
+        type:String,
+    },
+    Feedback:{
+        type:String
     }
+   
+     
+
 })
 
 const Appointment =new mongoose.model('Appointment',appointmentSchema) 
