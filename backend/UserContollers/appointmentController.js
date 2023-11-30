@@ -214,6 +214,23 @@ exports.updateCancel = asyncHandler(async (req, res) => {
       
       let toUpdate = await data.save();
       res.json(toUpdate);
+      if(data.status === "Cancelled"){
+        const transporter = nodemailer.createTransport({
+          service: "Gmail",
+          host: "smtp.gmail.com",
+          auth: {
+            user: emailUsername,
+            pass: emailPassword,
+          },
+        });
+  
+        const info = await transporter.sendMail({
+          from: '"M3 auto care" <m3autocare20@gmail.com>',
+          to: email,
+          subject: "Appointment Cancellation ",
+          html: `<strong>m3 Autocare:</strong> Your Appointment  has been Cancelled.`
+        });
+      }
       console.log(data);
     } else {
       res.status(400).json({ error: "Invalid status for cancellation" });

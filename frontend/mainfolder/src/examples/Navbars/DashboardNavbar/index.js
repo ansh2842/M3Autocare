@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 
 // prop-types is a library for typechecking of props.
@@ -65,13 +65,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import {Zoom} from '@mui/material';
+import axios from "axios";
 
 function DashboardNavbar({ absolute, light, isMini }) {
+  const {id} = useParams()
+  const [routeName,SetRouteName] = useState([])
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
+
+console.log('ssss',routeName)
 
   useEffect(() => {
     // Setting the navbar type
@@ -94,9 +99,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
     // Call the handleTransparentNavbar function to set the state with the initial value.
     handleTransparentNavbar();
-
+    
     // Remove event listener on cleanup
     return () => window.removeEventListener("scroll", handleTransparentNavbar);
+
+    
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
@@ -108,7 +115,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const logouts = () => {
     localStorage.clear();
   
-    window.location.href = '/authentication/sign-in?v=' + Date.now();
+    window.location.href = '/authentication/sign-in';
     
   };
 
@@ -120,7 +127,25 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleCloses = () => {
     setOpens(false);
   };
+
+  useEffect(()=>{
+
+    const routeName = async()=>{
+
+      try{
+        const response = await axios.get(`http://localhost:8000/admin/RouteName/${id}`)
+        const data =await response.data
+       console.log(data)
+       SetRouteName(data)
+      }catch(err){
+      console.log(err)
+      }
+    }
+
+    routeName()
+  },[])
   
+
   // Render the notifications menu
   const renderMenu = () => (
 
@@ -172,9 +197,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
-        <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
-        </SoftBox>
+        {routeName.length > 1?(
+             <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
+             <Breadcrumbs icon="home" title={routeName} route={route} light={light} />
+             </SoftBox>
+        ):(
+          <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
+          <Breadcrumbs icon="home" title={route[route.length - 1] }  route={route} light={light} /> 
+          </SoftBox>
+        )}
+        {/* <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
+        <Breadcrumbs icon="home" title={routeName ? route[route.length - 1] :routeName }  route={route} light={light} /> 
+        </SoftBox> */}
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
             <SoftBox pr={1}>

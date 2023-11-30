@@ -58,7 +58,7 @@ exports.loginUser = asyncHandler(async(req,res)=>{
 })
 
 exports.forgotUser = asyncHandler(async (req, res) => {
-    const { email } = req.body;  // Corrected to extract email from req.body
+    const { email } = req.body;  
   
     try {
       const userForgot = await userModel.findOne({ email: email });

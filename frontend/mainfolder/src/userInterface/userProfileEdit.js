@@ -53,21 +53,22 @@ const UserProfileEdit = () => {
   }, [getDatas]);
 
   const displayImage = (event) => {
-    const imageElement = document.querySelector(".img-thumbnail");
-
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
+  
       reader.onload = function (e) {
         setImage(e.target.result);
-        imageElement.src = e.target.result;
       };
-
+  
       reader.readAsDataURL(file);
     } else {
-      imageElement.src = "https://bootdey.com/img/Content/avatar/avatar7.png";
+
+      setImage(""); 
     }
   };
+  
+  
 
   const handleUpdate = async () => {
     const formData = new FormData();

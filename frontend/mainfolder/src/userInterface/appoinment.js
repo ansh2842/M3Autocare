@@ -84,6 +84,7 @@ function appoinment() {
         setServiceId({
           name: res.data.name,
           price: res.data.price,
+          id: res.data._id,
         });
         console.log("getServiceId:", getServiceId);
       })
@@ -118,6 +119,7 @@ function appoinment() {
       setServiceErr("");
       setPriceErr("");
     }
+
     if (date === "") {
       setDateErr("Please select a date");
     } else {
@@ -303,7 +305,7 @@ function appoinment() {
                           >
                             {getServiceId.name.length > 0 ? (
                               <>
-                                <option selected value={getServiceId.name}>
+                                <option selected value={getServiceId.id}>
                                   {getServiceId.name}
                                 </option>
 

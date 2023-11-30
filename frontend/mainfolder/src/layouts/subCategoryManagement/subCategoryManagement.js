@@ -207,6 +207,7 @@ const subCategoryManagement = () => {
             <th>Sl.no</th>
             <th>Image</th>
             <th>Sub Category Name</th>
+            <th>Category Name</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -219,6 +220,7 @@ const subCategoryManagement = () => {
                 <img style={{ width: "40px" }} src={`http://localhost:8000/${item.image}`}></img>
               </td>
               <td>{item.Title}</td>
+              <td>{item.categoryTitle}</td>
               <td>
                 <Link to={`/SubCategoryedit/${item._id}`}>
                   <SoftButton variant="text" color="info" fontWeight="medium">

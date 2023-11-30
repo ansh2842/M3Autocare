@@ -7,11 +7,11 @@ const requireAuth = require('../middleware/authMiddleware');
 var ProductController = require('../controller/ProductController')
 var adminController = require('../controller/adminController')
 var serviceController = require('../controller/serviceController')
-var otpController =  require('../controller/otpController')
 var techController = require('../controller/technicianController')
 var brandController = require('../controller/brandController')
 var bannerController = require('../controller/bannerController')
 var aboutController = require('../controller/aboutController')
+var RoutnameController = require('../controller/RoutnameController')
 var AppointmentController = require('../UserContollers/appointmentController')
 var TechandAppController = require('../controller/techAndapointController')
 var CancelAppointmentController = require('../UserContollers/cancelAppointmentController')
@@ -39,8 +39,8 @@ Router.post('/updatePasswordwithOtp',adminController.updatePasswordWithOtps)
 Router.get('/adminData',requireAuth,adminController.getAdminData)
 Router.post('/changePassword/:id',requireAuth,adminController.changePassword)
 Router.post('/Otpgenerate',adminController.sendOTP)
-Router.post('/CheckOTP',otpController.checkOTP)
-Router.post('/changeForgotPassword/:id',adminController.changeForgotPassword)
+Router.put('/CheckOTPPassword/:id',adminController.checkOTP)
+
 
 
 Router.post('/adminLogins',adminController.adminData)
@@ -138,5 +138,9 @@ Router.delete('/deleteTechByid/:id',TechandAppController.TechandDeleteByid)
 //cancelappointmentRoutes
 Router.get('/getCancel',requireAuth,CancelAppointmentController.cancelrqst)
 Router.put('/updateDataReject/:id',CancelAppointmentController.cancelreject)
+
+//ROuteNames 
+Router.get('/RouteName/:id',RoutnameController.RouteName)
+
 
 module.exports = Router;

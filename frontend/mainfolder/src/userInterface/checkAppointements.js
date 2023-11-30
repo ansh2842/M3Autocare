@@ -794,6 +794,7 @@ function contact() {
                                 position: "relative",
                                 bottom: "13px",
                                 color: "green",
+                                textTransform:"capitalize"
                               }}
                             >
                               {technician.comment}.

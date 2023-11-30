@@ -58,7 +58,7 @@ import SubCategoryManagement from "./layouts/subCategoryManagement/subCategoryMa
 import SubCategoryedit from "layouts/subCategoryManagement/subCategoryEdit/subCategoryedit";
 import ForgotPassword from "layouts/authentication/sign-in/forgotpassword";
 import ForgotPasswrodId from "layouts/authentication/sign-in/forgotPasswrodId";
-import ChangePassword from "layouts/authentication/sign-in/changePassword";
+
 import TechnicianManagement from "./layouts/technicianManagement/technicianManagement";
 import TechnicianEdit from "./layouts/technicianManagement/technicianEdit";
 import BrandManagement from "layouts/brandManagement/brandManagement";
@@ -277,7 +277,7 @@ const routes = [
   //   component: <RTL />,
   //   noCollapse: true,
   // },
-  { type: "title", title: "Service Reports", key: "service-reports" },
+  { type: "title", title: "Reports", key: "service-reports" },
   {
     type: "collapse",
     name: "Service Reports",
@@ -287,7 +287,6 @@ const routes = [
     component: <ServiceReport />,
     noCollapse: true,
   },
-  { type: "title", title: "Appointment Reports", key: "appointment-reports" },
   {
     type: "collapse",
     name: "Appointment Reports",
@@ -400,15 +399,7 @@ const routes = [
     component: <ForgotPasswrodId />,
     noCollapse: true,
   },
-  {
-   
-    name: "Forgot Password",
-    key: "update",
-    route: "/ChangePassword/:id",
-    icon: <SpaceShip size="12px" />,
-    component: <ChangePassword />,
-    noCollapse: true,
-  },
+
   {
    
     name: "Forgot Password",

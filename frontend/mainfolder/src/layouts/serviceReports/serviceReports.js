@@ -163,7 +163,7 @@ function serviceReports() {
             <tr style={{ fontSize: "14px" }} key={index}>
               <td>{calculateSerialNumber(index)}</td>
               <td>{item.Appointment_id}</td>
-              <td>
+              <td style={{textTransform:"capitalize"}}>
                 {item.name}
                 <br />
                 {item.location}

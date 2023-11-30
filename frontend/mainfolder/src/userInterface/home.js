@@ -60,8 +60,8 @@ function home() {
     price: "",
     date: "",
     remarks: "",
-    Feedback:"",
-    rating:'',
+    Feedback: "",
+    rating: "",
   });
 
   useEffect(() => {
@@ -124,7 +124,7 @@ function home() {
         date: data.appointment_date,
         remarks: data.remarks,
         Feedback: data.Feedback,
-        rating: data.rating
+        rating: data.rating,
       });
       console.log("1111111", data);
 
@@ -303,7 +303,6 @@ function home() {
     }
   };
 
- 
   return (
     <div>
       <div className={styles.hero_area}>
@@ -355,7 +354,7 @@ function home() {
 
         {/* end slider section */}
       </div>
-      
+
       {/* service section */}
       <section className={`${styles.service_section} ${styles.layout_padding}`}>
         <div className={styles.service_container}>
@@ -814,7 +813,7 @@ function home() {
                                     fontSize: "14px",
                                     position: "relative",
                                     bottom: "5px",
-                                    backgroundColor:"red"
+                                    backgroundColor: "red",
                                   }}
                                 >
                                   {getTrackDown.status}
@@ -1136,7 +1135,7 @@ function home() {
                           fontSize: "14px",
                           position: "relative",
                           bottom: "5px",
-                          backgroundColor:"red"
+                          backgroundColor: "red",
                         }}
                       >
                         {appdata.status}
@@ -1153,8 +1152,12 @@ function home() {
                 </DialogContentText>
                 <DialogContentText>
                   <span className={styles.dialogpop}>Feedback & Ratings:</span>
-                  <span style={{ textTransform: "capitalize",fontSize:"14px" }} className={styles.deatils1}>
-                    {appdata.rating}<br/>
+                  <span
+                    style={{ textTransform: "capitalize", fontSize: "14px" }}
+                    className={styles.deatils1}
+                  >
+                    {appdata.rating}
+                    <br />
                     {appdata.Feedback}
                   </span>
                 </DialogContentText>

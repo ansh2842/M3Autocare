@@ -69,7 +69,7 @@ function Footer() {
               <div className={styles.info_link_box}>
                 <h4 style={{ fontFamily: "Onest, sans-serif" }}>Links</h4>
                 <div className={styles.info_links}>
-                  <Link to={"/home?" + Date.now()}>
+                  <Link to={"/"}>
                     {" "}
                     <a
                       className={styles.active}
@@ -81,7 +81,7 @@ function Footer() {
                     </a>
                   </Link>
 
-                  <Link to={"/user-service/:id?" + Date.now()}>
+                  <Link to={"/user-service/:id"}>
                     {" "}
                     <a
                       className
@@ -92,7 +92,7 @@ function Footer() {
                       Services
                     </a>
                   </Link>
-                  <Link to={"/user-product/:id?" + Date.now()}>
+                  <Link to={"/user-product/:id"}>
                     {" "}
                     <a
                       className
@@ -103,7 +103,7 @@ function Footer() {
                       Products
                     </a>
                   </Link>
-                  <Link to={"/user-about?" + Date.now()}>
+                  <Link to={"/user-about"}>
                     {" "}
                     <a
                       className
@@ -114,7 +114,7 @@ function Footer() {
                       About Us
                     </a>
                   </Link>
-                  <Link to={"/user-contact?" + Date.now()}>
+                  <Link to={"/user-contact"}>
                     <a
                       className
                       href="contact.html"

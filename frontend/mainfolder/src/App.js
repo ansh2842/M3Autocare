@@ -92,6 +92,14 @@ export default function App() {
     setRtlCache(cacheRtl);
   }, []);
 
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:8000")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
+
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {

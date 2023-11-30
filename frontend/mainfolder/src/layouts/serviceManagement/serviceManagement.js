@@ -34,7 +34,7 @@ const serviceManagement = () => {
   const [mrpError, setMrpErrorr] = useState("");
   const [priceError, setPriceError] = useState("");
   const [message, setMessage] = useState("");
-
+  const [filterByName, setFilterByName] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [appointmentsPerPage] = useState(5);
   const indexOfLastAppointment = currentPage * appointmentsPerPage;
@@ -165,9 +165,9 @@ const serviceManagement = () => {
     }
   };
 
-  const ChangeService = (e) => {
-    setServices(e.target.value);
-  };
+  // const ChangeService = (e) => {
+  //   setServices(e.target.value);
+  // };
 
   return (
     <DashboardLayout>
@@ -194,20 +194,14 @@ const serviceManagement = () => {
         {message && decodeURIComponent(message)}
       </SoftTypography>
       <div style={{ marginBottom: "20px", width: "10rem" }}>
-        <label style={{ fontSize: "13px" }}>Filter by Sub-Category: </label>
-
-        <select
-          id="subCategory"
-          onChange={ChangeService}
-          value={getServices}
-          style={{ marginLeft: "10px", fontSize: "14px" }}
-        >
-          <option value="">All Services</option>
-
-          {getData.map((items) => (
-            <option key={items.id}>{items.name}</option>
-          ))}
-        </select>
+        <lable style={{fontSize:"15px",textTransform:"capitalize"}}>Filter by service name</lable>
+        <input
+          type="text"
+          value={filterByName}
+          onChange={(e) => setFilterByName(e.target.value)}
+          style={{ paddingLeft: "5px", fontSize: "14px",outline:'none' }}
+          placeholder="Search By Serivce Name"
+        />
       </div>
       <Table className="shadow p-3 mb-5 bg-body rounded" striped="columns">
         <thead>
@@ -224,7 +218,13 @@ const serviceManagement = () => {
         </thead>
         <tbody>
           {currentAppointments
-            .filter((item) => !getServices || item.name === getServices)
+            .filter(
+              (item) =>
+                (!getServices || item.name === getServices) &&
+                (filterByName === "" ||
+                  item.name.toLowerCase().includes(filterByName.toLowerCase()))
+            )
+
             .map((items, index) => (
               <tr style={{ fontSize: "14px" }} key={index}>
                 <td>{calculateSerialNumber(index)}</td>

@@ -1,34 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import SoftBox from 'components/SoftBox';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import SoftInput from 'components/SoftInput';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import SoftBox from "components/SoftBox";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import SoftInput from "components/SoftInput";
+import axios from "axios";
 
 const ForgotPasswordId = () => {
   const [invalid, setInvalid] = useState(false);
-  const [number, setNumber] = useState('');
-  const [enterotp, setEnterotp] = useState('');
+  const [number, setNumber] = useState("");
+  const [enterotp, setEnterotp] = useState("");
   const navigate = useNavigate();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [email,setEmail] =useState("");
+  const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
   const [showCountdown, setShowCountdown] = useState(false);
   const [showgetOtp, setGetOtp] = useState(true);
   const [countdown, setCountdown] = useState(120);
 
-  const message = 'Check your mail for OTP';
+  const message = "Check your mail for OTP";
 
   useEffect(() => {
-    const getEmail = JSON.parse(localStorage.getItem('userData')) || {};
+    const getEmail = JSON.parse(localStorage.getItem("userData")) || {};
     setNumber(getEmail);
 
-    
     let timer;
     if (showCountdown) {
       timer = setInterval(() => {
         if (countdown === 0) {
           clearInterval(timer);
-          setGetOtp(true)
-          setShowCountdown(false)
+          setGetOtp(true);
+          setShowCountdown(false);
           return;
         }
         setCountdown((prev) => prev - 1);
@@ -41,16 +43,16 @@ const ForgotPasswordId = () => {
   }, [showCountdown, countdown]);
 
   const getOtp = () => {
+    setGetOtp(false);
 
-    setGetOtp(false)
-    
     const datas = {
       email: `${number.email}`,
       enterotp: enterotp,
+      
     };
 
     axios
-      .post('http://localhost:8000/admin/Otpgenerate', datas)
+      .post("http://localhost:8000/admin/Otpgenerate", datas)
       .then((res) => {
         console.log(res.data);
         setShowCountdown(true);
@@ -68,20 +70,24 @@ const ForgotPasswordId = () => {
 
       const datas1 = {
         enterotp: enterotp,
+        email:email,
+        password:password, 
+        confirmPassword:confirmPassword
+
       };
 
       axios
-        .post('http://localhost:8000/admin/CheckOTP', datas1)
+        .put(`http://localhost:8000/admin/CheckOTPPassword/${number.id}`, datas1)
         .then((res) => {
           console.log(res.data);
           setInvalid('');
-          navigate(`/ChangePassword/${number.id}`);
+          navigate('/authentication/sign-in')
         })
         .catch((err) => {
           if (err.response && err.response.status === 400) {
             setInvalid('OTP has expired');
           } else if (err.response && err.response.status === 404) {
-            setInvalid('OTP not found');
+            setInvalid('OTP not found or OTP has expired');
           } else {
             console.log(err);
           }
@@ -92,93 +98,89 @@ const ForgotPasswordId = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        marginTop: '100px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '500px',
+        display: "flex",
+        marginTop: "100px",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "500px",
       }}
     >
       <p>Check your mail for OTP...</p>
       <div
         style={{
-          width: '300px',
-          height: '400px',
-          display: 'flex',
-          marginLeft: '40px',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-          borderRadius: '10px',
-          alignItems: 'center',
+          width: "340px",
+          height: "500px",
+          display: "flex",
+          marginLeft: "40px",
+          flexDirection: "column",
+          justifyContent: "center",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+          borderRadius: "10px",
+          alignItems: "center",
         }}
       >
         <form>
-     
-<SoftBox mb={2}>
-  <h4 style={{ marginLeft: '10px' }}>m3 autocare</h4>
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'flex-end',
-      textDecoration: 'underline',
-      cursor: 'pointer',
-    }}
-  >
-    {showgetOtp && (
-      <p
-        onClick={getOtp}
-        style={{ fontSize: '11px', marginTop: '4px' }}
-      >
-        Click for OTP
-      </p>
-    )}
-  </div>
-  <p style={{ fontSize: '13px' }}>{message}</p>
-  <SoftInput
-    onChange={(e) => setEnterotp(e.target.value)}
-    type="text"
-    placeholder="OTP"
-  />
-</SoftBox>
+          <SoftBox mb={2}>
+            <h4 style={{ marginLeft: "10px" }}>m3 autocare</h4>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                textDecoration: "underline",
+                cursor: "pointer",
+              }}
+            >
+              {showgetOtp && (
+                <p onClick={getOtp} style={{ fontSize: "11px", marginTop: "4px" }}>
+                  Click for OTP
+                </p>
+              )}
+            </div>
+            <p style={{ fontSize: "13px" }}>{message}</p>
+            <SoftInput
+              onChange={(e) => setEnterotp(e.target.value)}
+              type="text"
+              placeholder="OTP"
+            />
+          </SoftBox>
 
-          <p style={{ fontSize: '10px', color: 'red', marginTop: '-10px' }}>
-            {error}
-          </p>
+          <p style={{ fontSize: "10px", color: "red", marginTop: "-10px" }}>{error}</p>
           {showCountdown && (
             <p
-              style={{ fontSize: '10px', color: 'green', marginTop: '-10px' }}
+              style={{ fontSize: "10px", color: "green", marginTop: "-10px" }}
             >{`OTP valid till ${countdown}`}</p>
           )}
           {invalid && (
             <p
               style={{
-                marginTop: '-10px',
-                color: 'red',
-                fontSize: '10px',
+                marginTop: "-10px",
+                color: "red",
+                fontSize: "10px",
               }}
             >
               {invalid}
             </p>
           )}
-          <p
-            style={{ fontSize: '9px', color: 'grey', marginTop: '-10px' }}
-          >
+          <p style={{ fontSize: "9px", color: "grey", marginTop: "-10px" }}>
             *Dont disclose your OTP with someone
           </p>
+          <SoftInput onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="Email" />
+          <label style={{fontSize:"13px",color:"grey"}}>New Password</label>
+          <SoftInput style={{marginTop:"4px"}} onChange={(e)=>setPassword(e.target.value)} type="Password" placeholder="New Password" />
+          <label style={{fontSize:"13px",color:"grey"}}>Confirm Password</label>
+          <SoftInput style={{marginTop:"4px"}} onChange={(e)=>setConfirmPassword(e.target.value)}  type="Password" placeholder="Confirm Password" />
+
           <SoftBox mt={4} mb={1}>
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <Link>
-                <Button onClick={checkOTP} variant="success">
-                  Done
-                </Button>
+                <Button onClick={checkOTP} variant="success">Done</Button>
               </Link>
             </div>
           </SoftBox>

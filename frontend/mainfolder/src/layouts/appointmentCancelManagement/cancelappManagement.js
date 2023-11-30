@@ -164,6 +164,7 @@ function cancelappManagement() {
                 {
                   data.find((name) => name._id === item.id || name._id === item.appointmentid)
                     ?.carName
+                    
                 }
               </td>
               <td style={{ textTransform: "uppercase" }}>

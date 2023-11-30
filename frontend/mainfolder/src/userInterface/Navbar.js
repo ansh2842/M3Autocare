@@ -152,7 +152,7 @@ function Navbar() {
                   {nameHide && (
                     <div className={styles.navBox}>
                       <li className={styles.nav_item}>
-                        <img className={styles.profile} src={name.image} />
+                        <img className={styles.profile} onClick={toggleDropdown} src={name.image} />
                         <a onClick={toggleDropdown} className={styles.nav_link}>
                           {" "}
                           {name.username} <FontAwesomeIcon icon={icon} aria-hidden="true" />
@@ -212,9 +212,11 @@ function Navbar() {
         )}
         <div className={styles.bntbrs}>
           <div>
+          <Link to={"/"}>
             <span>
               <img className={styles.logo} src={logo} />
             </span>
+            </Link>
           </div>
           <div>
             <div className={styles.navBox}>

@@ -29,6 +29,7 @@ import SoftTypography from "components/SoftTypography";
 
 function Breadcrumbs({ icon, title, route, light }) {
   const routes = route.slice(0, -1);
+  const formattedTitle = Array.isArray(title) ? title.join(" ") : title;
 
   return (
     <SoftBox mr={{ xs: 0, xl: 8 }}>
@@ -72,7 +73,7 @@ function Breadcrumbs({ icon, title, route, light }) {
           color={light ? "white" : "dark"}
           sx={{ lineHeight: 0 }}
         >
-          {title.replace("-", " ")}
+               {String(title).replace("-", " ")}
         </SoftTypography>
       </MuiBreadcrumbs>
       <SoftTypography
@@ -82,7 +83,7 @@ function Breadcrumbs({ icon, title, route, light }) {
         color={light ? "white" : "dark"}
         noWrap
       >
-        {title.replace("-", " ")}
+        {String(title).replace("-", " ")}
       </SoftTypography>
     </SoftBox>
   );
