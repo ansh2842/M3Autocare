@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const userModel = require('../userModel/userModel')
 const nodemailer = require('nodemailer');
 const OTPmodel =  require('../userModel/userOtpModel');

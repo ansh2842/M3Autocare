@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 var adminSchema = new mongoose.Schema({
   image: {
